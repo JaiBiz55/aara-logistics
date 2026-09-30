@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 export default function ScrollController(){
   useEffect(()=>{
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if(window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
     let disposed=false;
     let cleanup:(()=>void)|undefined;
 
