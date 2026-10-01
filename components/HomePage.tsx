@@ -20,7 +20,7 @@ const services = [
   ['Cold Chain Solutions','/services/cold-chain-logistics'],
 ] as const;
 
-const stats = [['500+','Enterprise Clients'],['10M+','Shipments Delivered'],['99.5%','On-Time SLA Target'],['24/7','Live Control Tower Telemetry']];
+const stats = [['500+','Enterprise Clients'],['500K+','Shipments Delivered'],['99.5%','On-Time SLA Target'],['24/7','Live Control Tower Telemetry']];
 
 export default function HomePage() {
   return <>
