@@ -22,7 +22,7 @@ const services = [
   ['Cargo Shipping','/services/cargo-shipping'],
 ] as const;
 
-const stats = [['500+','Enterprise Clients'],['500K+','Shipments Delivered'],['99.5%','On-Time SLA Target'],['24/7','Live Control Tower Telemetry']];
+const stats = [['20+','Enterprise Clients'],['50K+','Shipments Delivered'],['99.5%','On-Time SLA Target'],['24/7','Live Control Tower Telemetry']];
 
 export default function HomePage() {
   return <>
