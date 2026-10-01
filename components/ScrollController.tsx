@@ -20,7 +20,7 @@ export default function ScrollController(){
           gsap.to('.homeHeroBg',{scale:1.12,yPercent:5,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:1}});
         }
         gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach(el=>gsap.fromTo(el,{y:35,opacity:0},{y:0,opacity:1,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none reverse'}}));
-        gsap.utils.toArray<HTMLElement>('.serviceRail a').forEach((el,i)=>gsap.fromTo(el,{x:30,opacity:0},{x:0,opacity:1,duration:.6,delay:i*.03,scrollTrigger:{trigger:'.serviceRail',start:'top 82%'}}));
+        gsap.utils.toArray<HTMLElement>('.serviceTourRow').forEach((el)=>gsap.fromTo(el,{y:24,opacity:0},{y:0,opacity:1,duration:.65,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 86%',once:true}}));
       });
       cleanup=()=>{ctx.revert();lenis.destroy();};
     }).catch(error=>console.error('Scroll enhancements could not load:',error));

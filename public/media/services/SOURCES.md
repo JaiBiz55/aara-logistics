@@ -1,18 +1,25 @@
 # Service video sources
 
-Pexels clips are locally hosted in this project. Pexels permits website and commercial use without required attribution; credits are recorded here for reference. The other entries are videos supplied for this project. The scenes are illustrative footage and do not imply endorsement by the people or brands shown.
+Pexels clips are locally hosted. Pexels permits website and commercial use without required attribution; links below are retained as credits. The visuals are illustrative stock footage and do not imply endorsement, employment or AARA-owned facilities.
 
 | Service page | Clip | Creator | Source |
 | --- | --- | --- | --- |
-| Supply chain solutions | Project-provided Movement 03 video | Provided by the site owner | `public/media/motion/movement-03.mp4` |
-| Warehouse equipment rental | Inventory scanning in a warehouse | Tiger Lily | https://www.pexels.com/video/a-man-scanning-stocks-in-the-warehouse-4292300/ |
-| Transportation FTL | Truck POV on a highway | K | https://www.pexels.com/video/moving-cars-on-expressway-4608275/ |
-| First mile | Workers loading boxes into a truck | Tiger Lily | https://www.pexels.com/video/men-loading-boxes-into-the-van-4296840/ |
-| Middle mile | Conveyor loading boxes onto a truck | Thanh-Thang Phan | https://www.pexels.com/video/transfer-goods-on-conveyor-belt-27367487/ |
-| Last mile | Courier delivering packages by motorcycle | Kindel Media | https://www.pexels.com/video/man-delivering-a-package-6867867/ |
-| Quick commerce | Courier preparing for a delivery | RDNE Stock project | https://www.pexels.com/video/deliveryman-on-a-bike-7362575/ |
-| Dark store solutions | Warehouse worker picking a parcel from a rack | Tima Miroshnichenko | https://www.pexels.com/video/courier-boy-finding-correct-parcel-from-the-rack-6170330/ |
-| Delivery solutions | Courier capturing a digital proof of delivery | Kampus Production | https://www.pexels.com/video/receiving-a-parcel-6715788/ |
-| E-commerce solution | Seller packing an order | Kampus Production | https://www.pexels.com/video/a-seller-packing-the-purchase-order-7855154/ |
+| Supply chain solutions | Project-provided Movement 03 | Site owner | `public/media/motion/movement-03.mp4` |
+| Warehouse equipment rental | Indian forklift operators | EqualStock IN | https://www.pexels.com/video/efficient-warehouse-operations-with-forklift-drivers-31352808/ |
+| Transportation FTL | Road freight clip | K | https://www.pexels.com/video/moving-cars-on-expressway-4608275/ |
+| First mile | Indian forklift operator in container warehouse | EqualStock IN | https://www.pexels.com/video/forklift-operator-working-in-warehouse-container-31352807/ |
+| Middle mile | South Asian worker moving pallet loads | EqualStock IN | https://www.pexels.com/video/textile-factory-worker-operating-pallet-jack-31371173/ |
+| Last mile | Existing First Mile clip (reused at user request) | Existing project asset | `public/media/services/first-mile.mp4` |
+| Quick commerce | Grocery aisle cart footage; rider dispatch | Existing project assets | `quick-commerce-grocery.mp4`, `quick-commerce.mp4` (original sources not recorded) |
+| Dark store solutions | Shelved parcels and stock | Existing project asset | `public/media/services/dark-store.mp4` (original source not recorded) |
+| Delivery solutions | Parcels staged at a residential doorstep | Existing project asset | `public/media/services/delivery-doorstep.mp4` (original source not recorded) |
+| E-commerce solution | Parcels moving along a sorting conveyor | Existing project asset | `public/media/services/ecommerce-conveyor.mp4` (original source not recorded) |
+| Cold chain logistics | Indian forklift operator in warehouse | EqualStock IN | https://www.pexels.com/video/efficient-warehouse-forklift-operation-in-action-31352805/ |
+
+The service videos above are illustrative footage only and are not presented as literal AARA facilities or employee footage. The original source and license details for the five existing topic-matched local clips are not recorded in the project; verify them before publishing the site publicly.
+
+Warehouse rental equipment categories were cross-checked against [Godrej RenTRUST warehouse rental](https://www.godrejrentrust.com/rental-solution/warehouse.html), [Godrej material handling equipment](https://www.godrejenterprises.com/intralogistics/material-handling-equipment/forklifts-and-warehouse-trucks), and [Jungheinrich India products](https://www.jungheinrichindia.in/). Confirm the available fleet and rental terms directly before publishing a specific equipment commitment.
+
+Cold-chain content was informed by India's [Ministry of Food Processing Industries cold-chain scheme](https://www.mofpi.gov.in/Schemes/about-cold-chain) and [National Centre for Cold Chain Development engineering guidance](https://nccd.gov.in/uploads/ENGINEERING_GUIDELINES_AND_MINIMUM_SYSTEM_STANDARDS_FOR_IMPLEMENTATION_IN_COLD_CHAIN_COMPONENTS_Second_Print_2d4bc6727d.pdf). Confirm product-specific temperature requirements for each shipment.
 
 License: https://www.pexels.com/license/

@@ -4,15 +4,10 @@ import { useEffect, useRef, useState } from 'react';
 
 type MotionSceneProps = {
   mode?: 'hero' | 'warehouse' | 'network';
-  clipSrc?: string;
-  clipLabel?: string;
+  clipSrc: string;
+  clipStartSeconds?: number;
+  clipEndSeconds?: number;
 };
-
-const clips = [
-  { src: '/media/motion/movement-01.mp4', label: 'MOVEMENT 01' },
-  { src: '/media/motion/movement-02.mp4', label: 'MOVEMENT 02' },
-  { src: '/media/motion/movement-03.mp4', label: 'MOVEMENT 03' },
-];
 
 const formatTime = (seconds: number) => {
   if (!Number.isFinite(seconds)) return '00:00';
@@ -21,17 +16,15 @@ const formatTime = (seconds: number) => {
   return `${minutes}:${remainder}`;
 };
 
-export default function MotionScene({ mode = 'hero', clipSrc, clipLabel }: MotionSceneProps) {
+export default function MotionScene({ mode = 'hero', clipSrc, clipStartSeconds = 0, clipEndSeconds }: MotionSceneProps) {
   const sceneRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [visible, setVisible] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [manualMotion, setManualMotion] = useState(false);
-  const [activeClip, setActiveClip] = useState(0);
   const [playing, setPlaying] = useState(true);
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const sceneClips = clipSrc ? [{ src: clipSrc, label: clipLabel ?? 'SERVICE VISUAL' }] : clips;
 
   useEffect(() => {
     const node = sceneRef.current;
@@ -57,7 +50,7 @@ export default function MotionScene({ mode = 'hero', clipSrc, clipLabel }: Motio
     } else {
       video.pause();
     }
-  }, [visible, playing, reducedMotion, manualMotion, activeClip]);
+  }, [visible, playing, reducedMotion, manualMotion]);
 
   const isPlaying = playing && (!reducedMotion || manualMotion);
 
@@ -67,31 +60,43 @@ export default function MotionScene({ mode = 'hero', clipSrc, clipLabel }: Motio
     if (nextPlaying && reducedMotion) setManualMotion(true);
   };
 
-  const selectClip = (index: number) => {
-    if (index === activeClip) return;
-    setActiveClip(index);
-    setTime(0);
-    setDuration(0);
-    setPlaying(true);
-    setManualMotion(false);
-  };
-
   const visualTitle = mode === 'warehouse' ? 'WAREHOUSE FLOW' : mode === 'network' ? 'CONNECTED NETWORK' : 'AARA IN MOTION';
 
   return (
     <div className={`motionScene motionScene-${mode}`} ref={sceneRef}>
       {visible && (
         <video
-          key={sceneClips[activeClip].src}
+          key={clipSrc}
           ref={videoRef}
           className="motionSceneVideo"
-          src={sceneClips[activeClip].src}
+          src={clipSrc}
           muted
-          loop
+          loop={clipEndSeconds === undefined}
           playsInline
           preload="metadata"
-          onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}
-          onTimeUpdate={(event) => setTime(event.currentTarget.currentTime)}
+          onLoadedMetadata={(event) => {
+            const video = event.currentTarget;
+            const end = clipEndSeconds === undefined ? video.duration : Math.min(clipEndSeconds, video.duration);
+            setDuration(Math.max(0, end - clipStartSeconds));
+            video.currentTime = Math.min(clipStartSeconds, Math.max(0, video.duration - 0.1));
+          }}
+          onTimeUpdate={(event) => {
+            const video = event.currentTarget;
+            const end = clipEndSeconds === undefined ? video.duration : Math.min(clipEndSeconds, video.duration);
+            if (clipEndSeconds !== undefined && video.currentTime >= end) {
+              video.currentTime = Math.min(clipStartSeconds, Math.max(0, end - 0.1));
+              setTime(0);
+              return;
+            }
+            setTime(Math.max(0, video.currentTime - clipStartSeconds));
+          }}
+          onEnded={(event) => {
+            if (clipEndSeconds === undefined) return;
+            const video = event.currentTarget;
+            video.currentTime = Math.min(clipStartSeconds, Math.max(0, video.duration - 0.1));
+            setTime(0);
+            if (isPlaying) void video.play().catch(() => setPlaying(false));
+          }}
         />
       )}
       <div className="motionSceneShade" />
@@ -120,20 +125,6 @@ export default function MotionScene({ mode = 'hero', clipSrc, clipLabel }: Motio
       </div>
 
       <div className="motionSceneControls">
-        {sceneClips.length > 1 && <div className="motionSceneClipSelect" aria-label="Select motion clip">
-          {sceneClips.map((clip, index) => (
-            <button
-              className={index === activeClip ? 'active' : ''}
-              key={clip.src}
-              type="button"
-              onClick={() => selectClip(index)}
-              aria-label={`Show ${clip.label.toLowerCase()}`}
-              aria-pressed={index === activeClip}
-            >
-              {String(index + 1).padStart(2, '0')}
-            </button>
-          ))}
-        </div>}
         <div className="motionSceneProgress" aria-hidden="true">
           <span style={{ width: `${duration ? Math.min(100, (time / duration) * 100) : 0}%` }} />
         </div>

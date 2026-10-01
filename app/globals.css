@@ -68,6 +68,51 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}
 .homePage .homeHero,.homePage .statStrip,.homePage .serviceIndexSection,.homePage .warehouseTease,.homePage .videoBand,.homePage .coverageSection,.homePage .contactBand{background:#001540;color:#fff}
 .homePage .statStrip{border-bottom:1px solid rgba(220,235,250,.14)}
 .homePage .statStripGrid>div{border-color:rgba(220,235,250,.14)}
+
+/* Keep every layout inside narrow viewports and avoid mobile input zoom. */
+html{scroll-padding-top:82px}
+body{overflow-x:clip}
+img,video{max-width:100%}
+.quoteForm input,.quoteForm select,.quoteForm textarea{font-size:16px}
+.quoteForm input,.quoteForm select,.quoteForm button{min-height:48px}
+.quoteForm textarea{min-height:120px}
+.primaryBtn,.ghostBtn,.darkBtn{min-height:44px}
+
+@media(max-width:700px){
+  html{scroll-padding-top:72px}
+  [data-reveal]{opacity:1;transform:none}
+  .homeHero,.homeHeroInner{min-height:max(96svh,670px)}
+  .homeHeroInner{padding:112px 0 86px}
+  .homeHero h1{font-size:clamp(38px,10vw,54px);max-width:10ch;overflow-wrap:anywhere}
+  .homeHero p{max-width:36rem}
+  .homeHeroBg .motionSceneTopline{top:76px}
+  .homeHeroBg .motionSceneControls{bottom:50px}
+  .heroBottomLine{display:none}
+  .siteNav.solid{backdrop-filter:none}
+  .mobileNav a,.mobileNav .mobileServicesToggle{min-height:48px}
+  .serviceTourRow,.featureCard,.stepGrid article{box-shadow:none}
+  .serviceTourRow:hover,.featureCard:hover{transform:none}
+  .serviceIndexSection,.coverageSection,.contactBand,.videoBand{padding-block:64px}
+}
+
+@media(max-width:380px){
+  .container{width:calc(100% - 28px)}
+  .homeHero h1{font-size:clamp(36px,10vw,42px);letter-spacing:-.055em}
+  .homeHero p{font-size:14px}
+  .statStripGrid>div{padding-inline:10px}
+  .statStrip strong{font-size:30px}
+  .detailStats div{padding:16px 10px}
+  .rentalEquipmentCard{padding:13px}
+}
+
+@media(hover:none) and (pointer:coarse){
+  [data-reveal]{opacity:1;transform:none}
+  .siteNav,.serviceTourRow,.featureCard,.stepGrid article,.cityCloud span{transition:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
 .homePage .statStrip strong{color:#ffd700}
 .homePage .statStrip span,.homePage .sectionKicker,.homePage .sectionLead,.homePage .warehouseCopy p,.homePage .coverageGrid p{color:rgba(235,243,251,.68)}
 .homePage .serviceIndexSection h2 em,.homePage .warehouseCopy h2 em,.homePage .coverageSection h2 em{color:#ffd700}
@@ -91,14 +136,13 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}
 .motionSceneCorner{position:absolute;width:20px;height:20px;border-color:rgba(255,215,0,.68)}.motionSceneCornerTop{left:0;top:0;border-left:1px solid;border-top:1px solid}.motionSceneCornerBottom{right:0;bottom:0;border-right:1px solid;border-bottom:1px solid}
 .motionSceneControls{position:absolute;z-index:4;right:28px;bottom:25px;display:flex;align-items:center;gap:12px;padding:9px 11px 9px 13px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(0,21,64,.72);backdrop-filter:blur(12px);box-shadow:0 12px 36px rgba(0,0,0,.2)}
 .homeHeroBg .motionSceneControls{bottom:58px}
-.motionSceneClipSelect{display:flex;gap:5px}.motionSceneClipSelect button{width:30px;height:30px;padding:0;border:1px solid rgba(255,255,255,.2);border-radius:50%;background:transparent;color:rgba(255,255,255,.7);font-size:9px;font-weight:700;cursor:pointer;transition:background .2s,border-color .2s,color .2s}.motionSceneClipSelect button:hover,.motionSceneClipSelect button.active{border-color:#ffd700;background:#ffd700;color:#001540}
 .motionSceneProgress{width:clamp(65px,9vw,130px);height:2px;background:rgba(255,255,255,.25);overflow:hidden}.motionSceneProgress span{display:block;height:100%;background:#ffd700;transition:width .2s linear}.motionSceneTime{white-space:nowrap;color:rgba(255,255,255,.74);font:9px ui-monospace,SFMono-Regular,Consolas,monospace}.motionSceneTime i{padding:0 3px;color:rgba(255,255,255,.38);font-style:normal}
 .motionScenePlay{width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.34);border-radius:50%;background:transparent;color:#fff;cursor:pointer;transition:background .2s,border-color .2s}.motionScenePlay:hover{background:#ffd700;border-color:#ffd700}.pauseGlyph{width:8px;height:11px;border-left:2px solid currentColor;border-right:2px solid currentColor}.playGlyph{width:0;height:0;margin-left:3px;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:7px solid currentColor}
 @keyframes motionSceneReveal{from{opacity:.5;transform:scale(1.025)}to{opacity:1;transform:scale(1)}}
 @keyframes motionSceneScan{to{transform:translateY(100%)}}
 @keyframes motionRouteTravel{to{stroke-dashoffset:-128}}
 @keyframes motionScenePulse{50%{opacity:.52;transform:scale(.88)}}
-@media(max-width:700px){.motionSceneTopline{left:14px;right:14px;top:14px;font-size:7px;letter-spacing:.12em}.motionSceneControls{right:12px;bottom:12px;gap:6px;padding:7px 8px;transform:scale(.85);transform-origin:bottom right}.homeHeroBg .motionSceneControls{bottom:52px}.motionSceneClipSelect{gap:3px}.motionSceneClipSelect button{width:24px;height:24px;font-size:8px}.motionSceneProgress{width:52px}.motionSceneHud{inset:42px 14px 54px}.motionSceneCoordinates{display:none}.motionRoute{opacity:.42}.motionSceneShade{background:linear-gradient(90deg,rgba(0,21,64,.56),transparent 60%),linear-gradient(0deg,rgba(0,15,40,.65),transparent 42%)}}
+@media(max-width:700px){.motionSceneTopline{left:14px;right:14px;top:14px;font-size:7px;letter-spacing:.12em}.motionSceneControls{right:12px;bottom:12px;gap:6px;padding:7px 8px;transform:scale(.85);transform-origin:bottom right}.homeHeroBg .motionSceneControls{bottom:52px}.motionSceneProgress{width:52px}.motionSceneHud{inset:42px 14px 54px}.motionSceneCoordinates{display:none}.motionRoute{opacity:.42}.motionSceneShade{background:linear-gradient(90deg,rgba(0,21,64,.56),transparent 60%),linear-gradient(0deg,rgba(0,15,40,.65),transparent 42%)}}
 @media(prefers-reduced-motion:reduce){.motionSceneScan,.motionSceneTopline b,.motionRouteFlow,.motionRouteNodeStart,.motionRouteNodeEnd{animation:none}.motionSceneVideo{animation:none}}
 .homePage .serviceRail a span,.homePage .serviceRail a b{color:#f6f9fd}
 .homePage .serviceRail a small{color:#ffd700}
@@ -106,6 +150,17 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}
 .homePage .cityCloud span{background:#082650;color:#f3f7fc;border-color:rgba(220,235,250,.18)}
 .homePage .cityCloud span:hover{background:#ffd700;border-color:#ffd700;color:#001540}
 .homePage + .footer{background:#001540;border-top:1px solid rgba(220,235,250,.14)}
+
+.rentalEquipment { margin-top: 72px; }
+.rentalEquipment > h2 { margin: 12px 0; color: #fff; font-size: clamp(36px, 4.5vw, 58px); line-height: 1; letter-spacing: -.055em; }
+.rentalEquipmentLead { max-width: 620px; margin: 0; color: rgba(235,243,251,.68); font-size: 15px; line-height: 1.7; }
+.rentalEquipmentGrid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; margin-top: 30px; }
+.rentalEquipmentCard { min-width: 0; min-height: 180px; padding: 18px; border: 1px solid rgba(220,235,250,.16); border-radius: 16px; background: linear-gradient(145deg,rgba(16,58,103,.72),rgba(5,31,70,.8)); }
+.rentalEquipmentCard > span { color: var(--yellow); font-size: 10px; font-weight: 800; letter-spacing: .14em; }
+.rentalEquipmentCard h3 { margin: 26px 0 8px; color: #fff; font-size: 17px; line-height: 1.25; }
+.rentalEquipmentCard p { margin: 0; color: rgba(235,243,251,.68); font-size: 12px; line-height: 1.65; }
+@media (max-width: 900px) { .rentalEquipmentGrid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 700px) { .rentalEquipment { margin-top: 54px; } .rentalEquipmentGrid { gap: 10px; margin-top: 22px; } .rentalEquipmentCard { min-height: 0; padding: 16px; } .rentalEquipmentCard h3 { margin-top: 20px; font-size: 15px; } .rentalEquipmentCard p { font-size: 12px; } }
 
 /* Services menu */
 .navServices{position:relative;display:flex;align-items:center}
@@ -127,3 +182,126 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}
 @media(max-width:700px){.homeHeroInner{padding-top:0}}
 @media(max-width:700px){.solutionHero h1{margin-bottom:26px}}
 @media(max-width:700px){.motionSceneGrid{opacity:.06}.motionSceneScan,.motionRouteFlow,.motionRouteNodeStart,.motionRouteNodeEnd{animation:none}.motionSceneVideo{filter:saturate(.78) contrast(1.02) brightness(.76)}}
+
+/* Responsive polish: preserve the desktop look while making touch layouts clear and usable. */
+@media (hover: none) and (pointer: coarse) {
+  [data-reveal] { opacity: 1; transform: none; }
+  .serviceRail a:hover, .cityCloud span:hover, .featureCard:hover, .stepGrid article:hover,
+  .darkBtn:hover, .primaryBtn:hover, .navQuote:hover { transform: none; box-shadow: none; }
+}
+
+@media (max-width: 1100px) {
+  .navInnerNew { height: 72px; gap: 14px; }
+  .hamb { width: 44px; height: 44px; flex: 0 0 44px; }
+  .mobileNav { top: 78px; left: 12px; right: 12px; padding: 10px 14px max(14px, env(safe-area-inset-bottom)); border: 1px solid rgba(255,255,255,.1); }
+  .mobileNav a, .mobileNav .mobileServicesToggle { min-height: 48px; }
+  .mobileNav.open { transform: translateY(0); }
+  .siteNav.solid { background: rgba(0,21,64,.96); }
+}
+
+@media (max-width: 700px) {
+  html { scroll-padding-top: 76px; }
+  body { -webkit-text-size-adjust: 100%; }
+  .container { width: min(calc(100% - 32px), var(--max)); }
+  .navInnerNew { height: 68px; }
+  .logo { gap: 8px; font-size: 19px; }
+  .logo i { width: 16px; height: 16px; }
+  .logo span { font-size: 9px; }
+  .hamb { border-radius: 14px; }
+  .mobileNav { top: 74px; left: 10px; right: 10px; max-height: calc(100svh - 84px); border-radius: 16px; }
+  .homeHero, .homeHeroInner { min-height: max(720px, 100svh); }
+  .homeHeroInner { justify-content: center; padding-top: 28px; padding-bottom: 72px; }
+  .homeHero h1 { max-width: 12ch; font-size: clamp(2.45rem, 10.5vw, 3.7rem); line-height: .98; }
+  .homeHero p { max-width: 39rem; font-size: 15px; line-height: 1.7; }
+  .heroActions { flex-direction: row; align-items: stretch; gap: 10px; }
+  .heroActions a { min-width: 0; min-height: 46px; flex: 1 1 150px; display: inline-flex; align-items: center; justify-content: center; padding: 12px 14px; font-size: 9px; }
+  .homeHeroBg .motionSceneControls { bottom: 48px; }
+  .heroBottomLine { left: 16px; right: 16px; bottom: max(12px, env(safe-area-inset-bottom)); justify-content: space-between; gap: 8px; overflow: visible; opacity: .72; filter: none; }
+  .heroBottomLine span { font-size: 9px !important; letter-spacing: .1em; }
+  .statStripGrid > div { min-width: 0; padding: 22px 14px; }
+  .statStrip strong { font-size: clamp(27px, 8vw, 36px); }
+  .statStrip span { line-height: 1.5; }
+  .serviceIndexSection, .coverageSection, .contactBand, .videoBand { padding: 76px 0; }
+  .serviceRail { margin-right: -16px; padding-right: 16px; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.26) transparent; scroll-snap-type: x mandatory; }
+  .serviceRail a { min-width: min(72vw, 250px); min-height: 132px; scroll-snap-align: start; }
+  .warehouseTease { display: flex; min-height: 0; flex-direction: column; padding: 70px 0 0; }
+  .warehouseCopy { order: 0; width: min(calc(100% - 32px), var(--max)); min-height: 0; margin: 0 auto; padding: 0 0 28px; }
+  .warehouseCopy h2 { margin: 14px 0; }
+  .warehouseCopy p { max-width: 38rem; }
+  .warehouseVisual { position: relative; inset: auto; order: 1; width: 100%; height: clamp(260px, 78vw, 390px); }
+  .videoShell { aspect-ratio: 16 / 10; }
+  .videoShell video { object-fit: cover; }
+  .videoBadge { left: 12px; right: 12px; bottom: 12px; max-width: none; width: fit-content; padding: 10px 12px; border-radius: 12px; font-size: 9px; line-height: 1.5; letter-spacing: .06em; }
+  .coverageGrid { gap: 26px; }
+  .cityCloud { gap: 8px; }
+  .cityCloud span { padding: 10px 12px; font-size: 10px; }
+  .contactGridNew { gap: 28px; }
+  .contactList { gap: 20px 14px; margin-top: 30px; }
+  .contactList a, .contactList > div { min-width: 0; overflow-wrap: anywhere; }
+  .quoteForm { margin-top: 12px; gap: 10px; }
+  .quoteForm input, .quoteForm textarea, .quoteForm select { min-height: 48px; padding: 13px 14px; font-size: 16px; }
+  .quoteForm textarea { min-height: 120px; }
+  .quoteForm button { min-height: 48px; font-size: 11px; }
+  .footerNew { padding-top: 24px; padding-bottom: max(24px, env(safe-area-inset-bottom)); gap: 10px; font-size: 8px; line-height: 1.5; }
+  .solutionHero { min-height: 0; padding: 0 0 38px; }
+  .solutionVisual { inset: 0; }
+  .solutionVignette { background: linear-gradient(90deg, rgba(0,21,64,.88), rgba(0,21,64,.56)), linear-gradient(0deg, rgba(0,21,64,.6), transparent 80%); }
+  .solutionHeroInner { width: min(calc(100% - 32px), var(--max)); min-height: 0; margin: 0 auto; padding: 132px 0 0; }
+  .solutionHero .motionSceneTopline { top: 82px; }
+  .solutionMeta { gap: 10px 16px; font-size: 9px; line-height: 1.5; }
+  .solutionHero h1 { max-width: 16ch; margin: 20px 0 16px; font-size: clamp(2.4rem, 9vw, 3.3rem); line-height: 1.02; overflow-wrap: anywhere; }
+  .solutionHero p { max-width: 38rem; font-size: 15px; line-height: 1.65; }
+  .solutionHeroActions { gap: 10px; }
+  .solutionHeroActions a { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; }
+  .solutionBody, .featureSection, .robotics { padding: 76px 0; }
+  .detailGrid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .detailGrid h2 { max-width: 18ch; overflow-wrap: anywhere; }
+  .detailStats { margin-top: 26px; }
+  .detailStats div { min-width: 0; }
+  .detailStats span { display: block; line-height: 1.5; }
+  .stepGrid { margin-top: 40px; grid-template-columns: minmax(0, 1fr); }
+  .featureGrid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .featureCard { border-radius: 16px; }
+  .roboticsVisual, .warehouseEquipment .roboticsVisual { height: clamp(260px, 78vw, 390px); min-height: 0; margin-top: 26px; border-radius: 16px; }
+  .ctaBand { padding: 70px 0; }
+  .ctaBand h2 { font-size: clamp(2.7rem, 12vw, 4.2rem); line-height: .92; }
+  .motionSceneControls { right: 10px; bottom: 10px; gap: 6px; padding: 6px 8px; transform: none; }
+  .solutionVisual .motionSceneControls { right: 10px; bottom: 10px; transform: none; }
+  .motionSceneProgress { width: clamp(34px, 10vw, 52px); }
+  .motionScenePlay { width: 38px; height: 38px; flex: 0 0 38px; }
+  .motionSceneTime { font-size: 8px; }
+  .motionSceneHud { inset: 42px 12px 56px; }
+}
+
+@media (max-width: 380px) {
+  .container { width: min(calc(100% - 28px), var(--max)); }
+  .homeHero h1 { font-size: clamp(2.25rem, 10vw, 2.8rem); }
+  .heroActions { flex-direction: column; align-items: stretch; }
+  .heroActions a { flex-basis: auto; }
+  .statStripGrid > div { padding: 18px 10px; }
+  .detailStats strong { font-size: 27px; }
+  .motionSceneProgress { display: none; }
+  .motionSceneControls { gap: 5px; }
+}
+
+/* Homepage logistics tour: video assets load only as each panel enters view. */
+.homeHeroBg{overflow:hidden}
+.clientSection{padding:48px 0 54px;background:#061a39;color:#fff;border-block:1px solid rgba(220,235,250,.1)}
+.clientIntro{text-align:center}.clientIntro p{margin:10px 0 20px;color:rgba(235,243,251,.68);font-size:13px}
+.clientNames{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:clamp(24px,7vw,96px);color:#f8fbff}
+.clientNames span{font-size:clamp(17px,2vw,25px);font-weight:800;letter-spacing:-.035em}.clientNames span:first-child{font-weight:900;letter-spacing:-.07em}.clientNames .clientEtc{font-size:12px;color:#ffd700;text-transform:uppercase;letter-spacing:.14em}
+.serviceIndexSection{padding-bottom:65px}
+.serviceTour{width:min(calc(100% - 48px),var(--max));margin:46px auto 0;display:grid;gap:18px}
+.serviceTourRow{min-height:clamp(280px,32vw,430px);display:grid;grid-template-columns:1.08fr .92fr;background:#061a39;border:1px solid rgba(210,229,249,.13);border-radius:22px;overflow:hidden;box-shadow:0 18px 60px rgba(0,0,0,.16)}
+.serviceTourRow:nth-child(even){grid-template-columns:.92fr 1.08fr}.serviceTourRow:nth-child(even) .serviceTourVisual{order:2}
+.serviceTourVisual{position:relative;min-height:280px;overflow:hidden;background:linear-gradient(145deg,#183958,#07152e)}
+.serviceTourVisual video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.82}
+.serviceTourVisualShade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,18,43,.04),rgba(2,18,43,.33)),linear-gradient(0deg,rgba(2,18,43,.62),transparent 54%)}
+.serviceTourVisualLabel,.serviceTourVisualIndex{position:absolute;z-index:1;color:rgba(255,255,255,.82);font-size:9px;letter-spacing:.17em;text-transform:uppercase}.serviceTourVisualLabel{top:22px;left:24px}.serviceTourVisualLabel:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#ffd700;margin-right:9px}.serviceTourVisualIndex{right:24px;bottom:21px;color:#ffd700}
+.serviceTourCopy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:clamp(24px,5vw,64px);color:#fff}
+.serviceTourCopy .sectionKicker{color:rgba(224,237,250,.52);font-size:9px}
+.serviceTourCopy h3{max-width:14ch;margin:20px 0 13px;font-size:clamp(30px,4.2vw,58px);line-height:.98;letter-spacing:-.065em}
+.serviceTourCopy p{max-width:38ch;margin:0;color:rgba(235,243,251,.69);font-size:14px;line-height:1.75}
+.serviceTourLink{display:inline-flex;align-items:center;gap:12px;margin-top:25px;padding-bottom:7px;border-bottom:1px solid rgba(255,215,0,.62);color:#ffd700;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.serviceTourLink span{font-size:16px;transition:transform .2s}.serviceTourLink:hover span{transform:translate(3px,-3px)}
+@media(max-width:700px){.clientSection{padding:38px 0}.clientNames{gap:14px 28px}.clientNames span{font-size:17px}.serviceTour{width:calc(100% - 24px);margin-top:34px;gap:13px}.serviceTourRow,.serviceTourRow:nth-child(even){grid-template-columns:1fr;min-height:0;border-radius:17px}.serviceTourRow:nth-child(even) .serviceTourVisual{order:0}.serviceTourVisual{min-height:0;height:clamp(210px,57vw,310px)}.serviceTourCopy{padding:24px 22px 27px}.serviceTourCopy h3{max-width:20ch;margin:13px 0 10px;font-size:clamp(29px,8vw,42px)}.serviceTourCopy p{font-size:13px}.serviceTourLink{margin-top:18px;font-size:9px}}
+@media (min-width:701px) and (max-width:1100px){.homeHero,.homeHeroInner{min-height:max(740px,100svh)}.homeHeroInner{padding-top:110px;padding-bottom:84px}.heroBottomLine{bottom:18px}}

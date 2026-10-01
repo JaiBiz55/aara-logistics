@@ -14,6 +14,7 @@ const services = [
   ['Dark Store Solutions', '/services/dark-store-solutions'],
   ['Delivery Solutions', '/services/delivery-solutions'],
   ['Ecom Solution', '/services/ecom-solution'],
+  ['Cold Chain Logistics', '/services/cold-chain-logistics'],
 ];
 
 const links = [

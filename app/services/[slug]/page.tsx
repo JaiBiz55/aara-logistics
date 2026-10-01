@@ -23,7 +23,7 @@ const pages = {
     ],
   },
   'warehouse-equipment-rental': {
-    index: '02', eyebrow: 'WAREHOUSE SOLUTIONS', clip: '/media/motion/movement-02.mp4',
+    index: '02', eyebrow: 'WAREHOUSE SOLUTIONS', clip: '/media/services/india-warehouse-forklift.mp4',
     title: 'SMART STORAGE. HIGH-VELOCITY MOVEMENT.',
     lead: 'Scalable warehouse space, flexible MHE rental, and human-machine workflows engineered for fast throughput.',
     description: 'Eliminates fixed real estate overheads, picking errors, and stockout risks during peak demand spikes.',
@@ -62,7 +62,7 @@ const pages = {
     ],
   },
   'first-mile': {
-    index: '04', eyebrow: 'FIRST MILE', clip: '/media/services/first-mile.mp4',
+    index: '04', eyebrow: 'FIRST MILE', clip: '/media/services/india-forklift-container.mp4',
     title: 'PRECISION PICKUPS FROM SOURCE.',
     lead: 'Controlled origin collection, vendor coordination, and swift freight inwarding before network entry.',
     description: 'Prevents uncoordinated supplier appointments, dock congestion, and unstandardized packaging from delaying downstream fulfillment.',
@@ -81,7 +81,7 @@ const pages = {
     ],
   },
   'middle-mile': {
-    index: '05', eyebrow: 'MIDDLE MILE', clip: '/media/services/middle-mile.mp4',
+    index: '05', eyebrow: 'MIDDLE MILE', clip: '/media/services/india-pallet-movement.mp4',
     title: 'HIGH-VELOCITY NETWORK LINEHAUL.',
     lead: 'Rapid, hub-to-hub transportation connecting manufacturing plants, DCs, and city fulfillment hubs.',
     description: 'Eliminates inter-city transit bottlenecks, empty miles, and sorting delays at transfer hubs.',
@@ -100,7 +100,7 @@ const pages = {
     ],
   },
   'last-mile': {
-    index: '06', eyebrow: 'LAST MILE', clip: '/media/services/last-mile.mp4',
+    index: '06', eyebrow: 'LAST MILE', clip: '/media/services/first-mile.mp4',
     title: 'FLAWLESS DOORSTEP EXECUTION.',
     lead: 'Local dispatch, dynamic route optimization, and real-time tracking for the critical final leg.',
     description: 'Reduces high last-mile costs, failed delivery attempts, urban traffic friction, and customer delivery anxiety.',
@@ -119,7 +119,7 @@ const pages = {
     ],
   },
   'quick-commerce': {
-    index: '07', eyebrow: 'QUICK COMMERCE', clip: '/media/services/quick-commerce.mp4',
+    index: '07', eyebrow: 'QUICK COMMERCE', clip: '/media/services/quick-commerce-grocery.mp4',
     title: 'SUB-HOUR HYPERLOCAL FULFILLMENT.',
     lead: 'Ultra-fast order processing and store-to-door delivery executed within 15-30 minutes from urban micro-hubs.',
     description: 'Meets consumer expectations for instant sub-hour delivery of groceries, personal care, and high-velocity essentials.',
@@ -158,7 +158,7 @@ const pages = {
     ],
   },
   'delivery-solutions': {
-    index: '09', eyebrow: 'DELIVERY SOLUTIONS', clip: '/media/services/delivery.mp4',
+    index: '09', eyebrow: 'DELIVERY SOLUTIONS', clip: '/media/services/delivery-doorstep.mp4',
     title: 'RELIABLE EXPRESS & ENTERPRISE DELIVERIES.',
     lead: 'Customized delivery options for enterprise, retail, and commercial shipments backed by strict SLA guarantees.',
     description: 'Provides flexible, SLA-backed delivery solutions tailored to multi-stop retail routes and specialized freight.',
@@ -177,7 +177,7 @@ const pages = {
     ],
   },
   'ecom-solution': {
-    index: '10', eyebrow: 'E-COMMERCE SOLUTIONS', clip: '/media/services/ecommerce.mp4',
+    index: '10', eyebrow: 'E-COMMERCE SOLUTIONS', clip: '/media/services/ecommerce-conveyor.mp4',
     title: 'BUILT TO SCALE ONLINE BRANDS.',
     lead: 'Complete e-commerce suite combining warehousing, automated picking, Pan-India delivery, and returns management.',
     description: 'Eliminates marketplace integration friction, high RTO return rates, and slow shipping times.',
@@ -193,6 +193,25 @@ const pages = {
       ['Automated NDR buyer verification', 'Verify buyer details when a delivery attempt needs follow-up.'],
       ['Frictionless reverse pickups', 'Coordinate returns collection from customers.'],
       ['Custom branded unboxing experience', 'Support a consistent branded presentation for delivered orders.'],
+    ],
+  },
+  'cold-chain-logistics': {
+    index: '11', eyebrow: 'COLD CHAIN LOGISTICS', clip: '/media/services/india-coldchain-operations.mp4',
+    title: 'PROTECT EVERY TEMPERATURE-SENSITIVE SHIPMENT.',
+    lead: 'Cold storage and temperature-controlled movement planned around the requirements of your products.',
+    description: 'Coordinate suitable cold rooms, handling windows and refrigerated transport across origin, storage and distribution handoffs.',
+    stats: [['Multi-Temp', 'Storage Planning'], ['Cold-Chain', 'Handoff Coordination'], ['Live', 'Milestone Visibility'], ['Product-Led', 'Temperature Plans']],
+    steps: [
+      ['01', 'Product Requirements', 'Confirm the product, handling conditions and required temperature range.'],
+      ['02', 'Cold Storage Plan', 'Coordinate suitable cold storage and staging requirements.'],
+      ['03', 'Temperature-Controlled Transit', 'Plan refrigerated or insulated movement for the shipment.'],
+      ['04', 'Verified Handoffs', 'Track handoffs and delivery milestones through the route.'],
+    ],
+    features: [
+      ['Cold storage coordination', 'Plan storage capacity around product and lane requirements.'],
+      ['Reefer and insulated transport planning', 'Coordinate refrigerated vehicles for suitable routes.'],
+      ['Temperature-aware handling windows', 'Align loading, staging and transfer timing with product needs.'],
+      ['Shipment milestone visibility', 'Keep teams informed as sensitive consignments move through the network.'],
     ],
   },
 } as const;
