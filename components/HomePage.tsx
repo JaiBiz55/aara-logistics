@@ -18,6 +18,8 @@ const services = [
   ['Delivery Solutions','/services/delivery-solutions'],
   ['Ecom Solution','/services/ecom-solution'],
   ['Cold Chain Solutions','/services/cold-chain-logistics'],
+  ['Air Shipping','/services/air-shipping'],
+  ['Cargo Shipping','/services/cargo-shipping'],
 ] as const;
 
 const stats = [['500+','Enterprise Clients'],['500K+','Shipments Delivered'],['99.5%','On-Time SLA Target'],['24/7','Live Control Tower Telemetry']];

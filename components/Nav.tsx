@@ -15,6 +15,8 @@ const services = [
   ['Delivery Solutions', '/services/delivery-solutions'],
   ['Ecom Solution', '/services/ecom-solution'],
   ['Cold Chain Logistics', '/services/cold-chain-logistics'],
+  ['Air Shipping', '/services/air-shipping'],
+  ['Cargo Shipping', '/services/cargo-shipping'],
 ];
 
 const links = [

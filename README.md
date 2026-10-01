@@ -14,6 +14,9 @@ Service routes include:
 - /services/dark-store-solutions
 - /services/delivery-solutions
 - /services/ecom-solution
+- /services/cold-chain-logistics
+- /services/air-shipping
+- /services/cargo-shipping
 
 ## Visual system
 - Gold: #FFD700
