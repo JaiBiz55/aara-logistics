@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { pauseBackgroundVideo, playBackgroundVideo } from '@/components/videoPlayback';
 
 export default function DeferredVideo({
   src,
@@ -11,38 +12,54 @@ export default function DeferredVideo({
 }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [nearViewport, setNearViewport] = useState(false);
-  const [loaded, setLoaded] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const video = ref.current;
     if (!video) return;
 
-    const observer = new IntersectionObserver(([entry]) => {
-      setNearViewport(entry.isIntersecting);
-      if (entry.isIntersecting) setLoaded(true);
-    }, { rootMargin: '180px 0px' });
+    if (!('IntersectionObserver' in window)) {
+      setNearViewport(true);
+      setVisible(true);
+      return;
+    }
 
-    observer.observe(video);
-    return () => observer.disconnect();
+    const preloadObserver = new IntersectionObserver(
+      ([entry]) => setNearViewport(entry.isIntersecting),
+      { rootMargin: '560px 0px' },
+    );
+    const playbackObserver = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.01 },
+    );
+    preloadObserver.observe(video);
+    playbackObserver.observe(video);
+
+    return () => {
+      preloadObserver.disconnect();
+      playbackObserver.disconnect();
+    };
   }, []);
 
   useEffect(() => {
     const video = ref.current;
-    if (!video || !loaded) return;
+    if (!video) return;
 
-    if (nearViewport) void video.play().catch(() => {});
-    else video.pause();
-  }, [loaded, nearViewport]);
+    if (visible) void playBackgroundVideo(video).catch(() => {});
+    else pauseBackgroundVideo(video);
+
+    return () => pauseBackgroundVideo(video);
+  }, [nearViewport, visible, src]);
 
   return (
     <video
       ref={ref}
-      src={loaded ? src : undefined}
+      src={nearViewport ? src : undefined}
       poster={poster}
       muted
       loop
       playsInline
-      preload="none"
+      preload={nearViewport ? 'metadata' : 'none'}
     />
   );
 }

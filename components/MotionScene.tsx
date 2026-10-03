@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { pauseBackgroundVideo, playBackgroundVideo } from '@/components/videoPlayback';
 
 type MotionSceneProps = {
   mode?: 'hero' | 'warehouse' | 'network';
@@ -19,19 +20,42 @@ const formatTime = (seconds: number) => {
 export default function MotionScene({ mode = 'hero', clipSrc, clipStartSeconds = 0, clipEndSeconds }: MotionSceneProps) {
   const sceneRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const progressRef = useRef<HTMLSpanElement>(null);
+  const currentTimeRef = useRef<HTMLSpanElement>(null);
+  const durationTimeRef = useRef<HTMLSpanElement>(null);
+  const durationRef = useRef(0);
+  const isPriority = mode === 'hero';
+  const [nearViewport, setNearViewport] = useState(isPriority);
   const [visible, setVisible] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [manualMotion, setManualMotion] = useState(false);
   const [playing, setPlaying] = useState(true);
-  const [time, setTime] = useState(0);
-  const [duration, setDuration] = useState(0);
 
   useEffect(() => {
     const node = sceneRef.current;
     if (!node) return;
-    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { rootMargin: '160px 0px' });
-    observer.observe(node);
-    return () => observer.disconnect();
+
+    if (!('IntersectionObserver' in window)) {
+      setNearViewport(true);
+      setVisible(true);
+      return;
+    }
+
+    const preloadObserver = new IntersectionObserver(
+      ([entry]) => setNearViewport(entry.isIntersecting),
+      { rootMargin: '480px 0px' },
+    );
+    const playbackObserver = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.01 },
+    );
+    preloadObserver.observe(node);
+    playbackObserver.observe(node);
+
+    return () => {
+      preloadObserver.disconnect();
+      playbackObserver.disconnect();
+    };
   }, []);
 
   useEffect(() => {
@@ -42,15 +66,20 @@ export default function MotionScene({ mode = 'hero', clipSrc, clipStartSeconds =
     return () => preference.removeEventListener('change', update);
   }, []);
 
+  const sourceAttached = isPriority || nearViewport;
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+
     if (visible && playing && (!reducedMotion || manualMotion)) {
-      void video.play().catch(() => setPlaying(false));
+      void playBackgroundVideo(video).catch(() => setPlaying(false));
     } else {
-      video.pause();
+      pauseBackgroundVideo(video);
     }
-  }, [visible, playing, reducedMotion, manualMotion]);
+
+    return () => pauseBackgroundVideo(video);
+  }, [clipSrc, sourceAttached, visible, playing, reducedMotion, manualMotion]);
 
   const isPlaying = playing && (!reducedMotion || manualMotion);
 
@@ -60,11 +89,20 @@ export default function MotionScene({ mode = 'hero', clipSrc, clipStartSeconds =
     if (nextPlaying && reducedMotion) setManualMotion(true);
   };
 
+  const updateTimeline = (elapsed: number) => {
+    if (currentTimeRef.current) currentTimeRef.current.textContent = formatTime(elapsed);
+    const duration = durationRef.current;
+    if (progressRef.current) {
+      const percent = duration ? Math.min(100, (elapsed / duration) * 100) : 0;
+      progressRef.current.style.width = `${percent}%`;
+    }
+  };
+
   const visualTitle = mode === 'warehouse' ? 'WAREHOUSE FLOW' : mode === 'network' ? 'CONNECTED NETWORK' : 'AARA IN MOTION';
 
   return (
-    <div className={`motionScene motionScene-${mode}`} ref={sceneRef}>
-      {visible && (
+    <div className={`motionScene motionScene-${mode}${visible ? ' is-visible' : ''}`} ref={sceneRef}>
+      {sourceAttached && (
         <video
           key={clipSrc}
           ref={videoRef}
@@ -73,29 +111,31 @@ export default function MotionScene({ mode = 'hero', clipSrc, clipStartSeconds =
           muted
           loop={clipEndSeconds === undefined}
           playsInline
-          preload="metadata"
+          preload={isPriority ? 'auto' : 'metadata'}
           onLoadedMetadata={(event) => {
             const video = event.currentTarget;
             const end = clipEndSeconds === undefined ? video.duration : Math.min(clipEndSeconds, video.duration);
-            setDuration(Math.max(0, end - clipStartSeconds));
+            durationRef.current = Math.max(0, end - clipStartSeconds);
+            if (durationTimeRef.current) durationTimeRef.current.textContent = formatTime(durationRef.current);
             video.currentTime = Math.min(clipStartSeconds, Math.max(0, video.duration - 0.1));
+            updateTimeline(0);
           }}
           onTimeUpdate={(event) => {
             const video = event.currentTarget;
             const end = clipEndSeconds === undefined ? video.duration : Math.min(clipEndSeconds, video.duration);
             if (clipEndSeconds !== undefined && video.currentTime >= end) {
               video.currentTime = Math.min(clipStartSeconds, Math.max(0, end - 0.1));
-              setTime(0);
+              updateTimeline(0);
               return;
             }
-            setTime(Math.max(0, video.currentTime - clipStartSeconds));
+            updateTimeline(Math.max(0, video.currentTime - clipStartSeconds));
           }}
           onEnded={(event) => {
             if (clipEndSeconds === undefined) return;
             const video = event.currentTarget;
             video.currentTime = Math.min(clipStartSeconds, Math.max(0, video.duration - 0.1));
-            setTime(0);
-            if (isPlaying) void video.play().catch(() => setPlaying(false));
+            updateTimeline(0);
+            if (isPlaying) void playBackgroundVideo(video).catch(() => setPlaying(false));
           }}
         />
       )}
@@ -126,9 +166,9 @@ export default function MotionScene({ mode = 'hero', clipSrc, clipStartSeconds =
 
       <div className="motionSceneControls">
         <div className="motionSceneProgress" aria-hidden="true">
-          <span style={{ width: `${duration ? Math.min(100, (time / duration) * 100) : 0}%` }} />
+          <span ref={progressRef} />
         </div>
-        <span className="motionSceneTime">{formatTime(time)} <i>/</i> {formatTime(duration)}</span>
+        <span className="motionSceneTime"><span ref={currentTimeRef}>00:00</span> <i>/</i> <span ref={durationTimeRef}>00:00</span></span>
         <button className="motionScenePlay" type="button" onClick={togglePlayback} aria-label={isPlaying ? 'Pause motion clip' : 'Play motion clip'}>
           {isPlaying ? <span className="pauseGlyph" /> : <span className="playGlyph" />}
         </button>

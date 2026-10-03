@@ -1,8 +1,6 @@
 node_modules
 .next
 out
-node_modules/
-.npm-cache/
 npm-debug.log*
 .env
 .env.local
@@ -10,4 +8,3 @@ npm-debug.log*
 .DS_Store
 coverage
 *.log
-*.tsbuildinfo

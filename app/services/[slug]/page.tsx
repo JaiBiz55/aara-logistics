@@ -214,44 +214,6 @@ const pages = {
       ['Shipment milestone visibility', 'Keep teams informed as sensitive consignments move through the network.'],
     ],
   },
-  'air-shipping': {
-    index: '12', eyebrow: 'AIR SHIPPING', clip: '/media/services/mixkit-flight-getting-ready-for-departure-4065-full-hd.mp4',
-    title: 'MOVE TIME-CRITICAL FREIGHT AT SPEED.',
-    lead: 'Coordinated air freight options for urgent consignments, with pickup, airport handling, and delivery planned around shipment priorities.',
-    description: 'Connect origin collection, air freight coordination, shipment handoffs, and final delivery with milestone visibility through the journey.',
-    stats: [['Priority', 'Air Freight Options'], ['Origin-to-Door', 'Coordination'], ['Planned', 'Airport Handoffs'], ['Live', 'Milestone Updates']],
-    steps: [
-      ['01', 'Shipment Assessment', 'Confirm shipment dimensions, weight, destination, delivery deadline, and handling needs.'],
-      ['02', 'Pickup & Preparation', 'Schedule collection and coordinate shipment preparation and documentation.'],
-      ['03', 'Air Transit Coordination', 'Coordinate airport handoffs and planned air movement.'],
-      ['04', 'Final Delivery', 'Arrange destination delivery and confirm the shipment handoff.'],
-    ],
-    features: [
-      ['Priority routing options', 'Match available air freight options to shipment urgency and destination.'],
-      ['Pickup and airport transfer coordination', 'Coordinate ground movement and handoffs around the air journey.'],
-      ['Shipment documentation support', 'Help coordinate the information required for shipment processing.'],
-      ['Milestone updates through delivery', 'Keep teams informed as the shipment moves between handoffs.'],
-    ],
-  },
-  'cargo-shipping': {
-    index: '13', eyebrow: 'CARGO SHIPPING', clip: '/media/services/133079-755697265.mp4',
-    title: 'CARGO MOVEMENT, PLANNED END TO END.',
-    lead: 'Coordinated cargo transport for commercial consignments, from pickup and capacity planning through delivery.',
-    description: 'Match cargo requirements to practical transport capacity, route planning, handling, and delivery coordination.',
-    stats: [['FTL / LTL', 'Capacity Options'], ['Door-to-Door', 'Movement Planning'], ['Scheduled', 'Pickup Coordination'], ['Tracked', 'Transit Milestones']],
-    steps: [
-      ['01', 'Cargo Assessment', 'Confirm shipment dimensions, weight, handling needs, origin, and destination.'],
-      ['02', 'Pickup & Consolidation', 'Plan suitable collection and consolidation for the shipment.'],
-      ['03', 'Linehaul Transit', 'Coordinate cargo movement along the planned route.'],
-      ['04', 'Delivery Confirmation', 'Arrange the destination handoff and capture delivery confirmation.'],
-    ],
-    features: [
-      ['FTL and LTL coordination', 'Match transport capacity to the shipment and lane.'],
-      ['Planned pickup and delivery windows', 'Coordinate collection and arrival timing with shipment requirements.'],
-      ['Cargo handling requirements', 'Plan handling around the shipment type and declared needs.'],
-      ['Transit updates and delivery confirmation', 'Track shipment milestones through the final handoff.'],
-    ],
-  },
 } as const;
 
 export function generateStaticParams() {

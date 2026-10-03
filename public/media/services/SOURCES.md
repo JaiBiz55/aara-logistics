@@ -15,8 +15,6 @@ Pexels clips are locally hosted. Pexels permits website and commercial use witho
 | Delivery solutions | Parcels staged at a residential doorstep | Existing project asset | `public/media/services/delivery-doorstep.mp4` (original source not recorded) |
 | E-commerce solution | Parcels moving along a sorting conveyor | Existing project asset | `public/media/services/ecommerce-conveyor.mp4` (original source not recorded) |
 | Cold chain logistics | Indian forklift operator in warehouse | EqualStock IN | https://www.pexels.com/video/efficient-warehouse-forklift-operation-in-action-31352805/ |
-| Air shipping | Flight preparing for departure | User-provided asset | `public/media/services/mixkit-flight-getting-ready-for-departure-4065-full-hd.mp4` |
-| Cargo shipping | Cargo footage | User-provided asset | `public/media/services/133079-755697265.mp4` |
 
 The service videos above are illustrative footage only and are not presented as literal AARA facilities or employee footage. The original source and license details for the five existing topic-matched local clips are not recorded in the project; verify them before publishing the site publicly.
 

@@ -13,8 +13,6 @@ const tours = [
   { name: 'Delivery Solutions', slug: 'delivery-solutions', clip: '/media/services/delivery-doorstep.mp4', note: 'Flexible delivery capacity for retail, enterprise and commercial needs.' },
   { name: 'E-commerce Solutions', slug: 'ecom-solution', clip: '/media/services/ecommerce-conveyor.mp4', note: 'Order fulfilment, shipping and returns for growing online brands.' },
   { name: 'Cold Chain Logistics', slug: 'cold-chain-logistics', clip: '/media/services/india-coldchain-operations.mp4', note: 'Temperature-aware handling and cold storage coordination for sensitive goods.' },
-  { name: 'Air Shipping', slug: 'air-shipping', clip: '/media/services/mixkit-flight-getting-ready-for-departure-4065-full-hd.mp4', note: 'Coordinated air freight for time-sensitive shipments, from pickup through delivery.' },
-  { name: 'Cargo Shipping', slug: 'cargo-shipping', clip: '/media/services/133079-755697265.mp4', note: 'Planned cargo capacity and transport coordination for commercial consignments.' },
 ];
 
 export default function ServiceTour() {

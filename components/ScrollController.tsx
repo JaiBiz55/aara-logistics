@@ -1,31 +1,47 @@
 'use client';
+
 import { useEffect } from 'react';
 
-export default function ScrollController(){
-  useEffect(()=>{
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if(window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
-    let disposed=false;
-    let cleanup:(()=>void)|undefined;
+export default function ScrollController() {
+  useEffect(() => {
+    const root = document.documentElement;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const touchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    const targets = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal], .serviceTourRow'));
 
-    void Promise.all([import('gsap'),import('gsap/ScrollTrigger'),import('lenis')]).then(([gsapModule,scrollTriggerModule,lenisModule])=>{
-      if(disposed) return;
-      const gsap=gsapModule.default;
-      gsap.registerPlugin(scrollTriggerModule.ScrollTrigger);
-      const lenis=new lenisModule.default({autoRaf:true,smoothWheel:true,anchors:true});
-      const ctx=gsap.context(()=>{
-        const hero=document.querySelector('#hero');
-        if(hero){
-          gsap.to('.homeHeroInner',{y:120,opacity:.25,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:1}});
-          gsap.to('.homeHeroBg',{scale:1.12,yPercent:5,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:1}});
+    if (reducedMotion || touchDevice || !('IntersectionObserver' in window)) return;
+
+    const initiallyVisible = new Set<HTMLElement>();
+    const viewportHeight = window.innerHeight;
+    for (const target of targets) {
+      const bounds = target.getBoundingClientRect();
+      if (bounds.top < viewportHeight * 0.92 && bounds.bottom > 0) {
+        target.dataset.revealed = 'true';
+        initiallyVisible.add(target);
+      }
+    }
+
+    root.classList.add('scroll-ready');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          (entry.target as HTMLElement).dataset.revealed = 'true';
+          observer.unobserve(entry.target);
         }
-        gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach(el=>gsap.fromTo(el,{y:35,opacity:0},{y:0,opacity:1,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none reverse'}}));
-        gsap.utils.toArray<HTMLElement>('.serviceTourRow').forEach((el)=>gsap.fromTo(el,{y:24,opacity:0},{y:0,opacity:1,duration:.65,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 86%',once:true}}));
-      });
-      cleanup=()=>{ctx.revert();lenis.destroy();};
-    }).catch(error=>console.error('Scroll enhancements could not load:',error));
+      },
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.01 },
+    );
 
-    return()=>{disposed=true;cleanup?.();};
-  },[]);
+    for (const target of targets) {
+      if (!initiallyVisible.has(target)) observer.observe(target);
+    }
+
+    return () => {
+      root.classList.remove('scroll-ready');
+      observer.disconnect();
+    };
+  }, []);
+
   return null;
 }
