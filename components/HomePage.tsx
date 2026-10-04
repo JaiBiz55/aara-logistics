@@ -28,7 +28,7 @@ export default function HomePage() {
     <Nav />
     <main id="top" className="homePage">
       <section className="homeHero" id="hero">
-        <div className="homeHeroBg"><MotionScene mode="hero" clipSrc="/media/motion/movement-01.mp4" clipStartSeconds={18} clipEndSeconds={59} /></div>
+        <div className="homeHeroBg"><MotionScene mode="hero" clipSrc="/media/motion/movement-01 - Trim.mp4"/></div>
         <div className="homeHeroShade" />
         <div className="container homeHeroInner">
           <div className="heroMini">LIVE NETWORK STATUS <span>·</span> REAL-TIME TRACKING ACROSS PAN-INDIA LANES</div>
