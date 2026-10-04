@@ -74,16 +74,16 @@ export default function Nav() {
         </div>
       </div>
       <div className={`mobileNav ${open ? 'open' : ''}`} aria-hidden={!open} inert={!open}>
-        {links.slice(0, 1).map(([label, href]) => <Link key={href} href={href} onClick={closeMenus}>{label}<b>↗</b></Link>)}
+        {links.slice(0, 1).map(([label, href]) => <Link key={href} href={href} onClick={closeMenus}>{label}<span aria-hidden="true">↗</span></Link>)}
         <button className="mobileServicesToggle" type="button" aria-expanded={servicesOpen} aria-controls="mobile-services-submenu" onClick={() => setServicesOpen((value) => !value)}>
           Services <b aria-hidden="true">{servicesOpen ? '−' : '+'}</b>
         </button>
         {servicesOpen && <div className="mobileServices" id="mobile-services-submenu">
-          <Link href="/#services" onClick={closeMenus}>All services <b>↗</b></Link>
-          {services.map(([label, href]) => <Link key={href} href={href} onClick={closeMenus}>{label}<b>↗</b></Link>)}
+          <Link href="/#services" onClick={closeMenus}>All services <span aria-hidden="true">↗</span></Link>
+          {services.map(([label, href]) => <Link key={href} href={href} onClick={closeMenus}>{label}<span aria-hidden="true">↗</span></Link>)}
         </div>}
-        {links.slice(1).map(([label, href]) => <Link key={href} href={href} onClick={closeMenus}>{label}<b>↗</b></Link>)}
-        <Link className="mobileQuote" href="/#contact" onClick={closeMenus}>Request a quote ↗</Link>
+        {links.slice(1).map(([label, href]) => <Link key={href} href={href} onClick={closeMenus}>{label}<span aria-hidden="true">↗</span></Link>)}
+        <Link className="mobileQuote" href="/#contact" onClick={closeMenus}>Request a quote <span aria-hidden="true">↗</span></Link>
       </div>
     </header>
   );

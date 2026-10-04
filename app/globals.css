@@ -181,7 +181,8 @@ img,video{max-width:100%}
 .mobileNav .mobileServicesToggle b{color:var(--yellow);font-size:16px}
 .mobileServices{display:grid;padding:3px 0 8px 12px}
 .mobileNav .mobileServices a{padding:11px 8px;font-size:10px;letter-spacing:.06em;opacity:.88}
-.mobileNav .mobileServices a b{color:var(--yellow)}
+.mobileNav a > span{font-weight:400;letter-spacing:0}
+.mobileNav .mobileServices a > span{color:var(--yellow)}
 @media(max-width:700px){.homeHeroInner{padding-top:0}}
 @media(max-width:700px){.solutionHero h1{margin-bottom:26px}}
 @media(max-width:700px){.motionSceneGrid{opacity:.06}.motionSceneScan,.motionRouteFlow,.motionRouteNodeStart,.motionRouteNodeEnd{animation:none}.motionSceneVideo{filter:saturate(.78) contrast(1.02) brightness(.76)}}
