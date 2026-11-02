@@ -73,7 +73,7 @@ export default function MotionScene({ mode = 'hero', clipSrc, clipStartSeconds =
     if (!video) return;
 
     if (visible && playing && (!reducedMotion || manualMotion)) {
-      void playBackgroundVideo(video).catch(() => setPlaying(false));
+      startPlayback(video);
     } else {
       pauseBackgroundVideo(video);
     }
@@ -87,6 +87,14 @@ export default function MotionScene({ mode = 'hero', clipSrc, clipStartSeconds =
     const nextPlaying = !isPlaying;
     setPlaying(nextPlaying);
     if (nextPlaying && reducedMotion) setManualMotion(true);
+  };
+
+  const startPlayback = (video: HTMLVideoElement) => {
+    void playBackgroundVideo(video).catch((error: unknown) => {
+      if (error instanceof DOMException && error.name === 'AbortError') return;
+      console.error(`Unable to play motion scene video: ${clipSrc}`, error);
+      setPlaying(false);
+    });
   };
 
   const updateTimeline = (elapsed: number) => {
@@ -109,9 +117,15 @@ export default function MotionScene({ mode = 'hero', clipSrc, clipStartSeconds =
           className="motionSceneVideo"
           src={clipSrc}
           muted
+          autoPlay={isPriority && (!reducedMotion || manualMotion)}
           loop={clipEndSeconds === undefined}
           playsInline
-          preload="metadata"
+          preload={isPriority ? 'auto' : 'metadata'}
+          onCanPlay={(event) => {
+            if (isPriority && visible && playing && (!reducedMotion || manualMotion)) {
+              startPlayback(event.currentTarget);
+            }
+          }}
           onLoadedMetadata={(event) => {
             const video = event.currentTarget;
             const end = clipEndSeconds === undefined ? video.duration : Math.min(clipEndSeconds, video.duration);
@@ -135,7 +149,7 @@ export default function MotionScene({ mode = 'hero', clipSrc, clipStartSeconds =
             const video = event.currentTarget;
             video.currentTime = Math.min(clipStartSeconds, Math.max(0, video.duration - 0.1));
             updateTimeline(0);
-            if (isPlaying) void playBackgroundVideo(video).catch(() => setPlaying(false));
+            if (isPlaying) startPlayback(video);
           }}
         />
       )}

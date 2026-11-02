@@ -18,6 +18,8 @@ export default function ServiceTourVideo({
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const shouldPlay = isMobile ? focused : hovered;
+  const isActive = shouldPlay && playbackEnabled;
 
   useEffect(() => {
     const node = ref.current;
@@ -61,7 +63,7 @@ export default function ServiceTourVideo({
     const video = videoRef.current;
     if (!video || !shouldLoad) return;
 
-    if ((isMobile ? focused : hovered) && playbackEnabled) {
+    if (isActive) {
       void playBackgroundVideo(video).catch((error: unknown) => {
         if (error instanceof DOMException && error.name === 'AbortError') return;
         console.error(`Unable to play service preview video: ${src}`, error);
@@ -71,7 +73,7 @@ export default function ServiceTourVideo({
     }
 
     return () => pauseBackgroundVideo(video);
-  }, [focused, hovered, isMobile, playbackEnabled, shouldLoad, src]);
+  }, [isActive, shouldLoad, src]);
 
   return (
     <div
@@ -86,7 +88,7 @@ export default function ServiceTourVideo({
         muted
         loop
         playsInline
-        preload={shouldLoad ? 'auto' : 'none'}
+        preload={isActive ? 'auto' : shouldLoad ? 'metadata' : 'none'}
         aria-label={`${label} service footage`}
       />
       <div className="serviceTourVisualShade" />
