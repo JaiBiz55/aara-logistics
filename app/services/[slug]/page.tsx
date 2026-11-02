@@ -20,6 +20,7 @@ const pages = {
       ['Zero-dwell cross-docking', 'Move shipments through transfer hubs with minimal dwell time.'],
       ['Dynamic exception rerouting', 'Adjust routes and handoffs when delays or disruptions occur.'],
       ['Enterprise SLA guarantees', 'Coordinate service delivery against agreed enterprise service levels.'],
+      ['Shared operating reviews', 'Review lane performance, handoff delays and service levels together to prioritize improvements.'],
     ],
   },
   'warehouse-equipment-rental': {
@@ -39,6 +40,7 @@ const pages = {
       ['Multi-tier VNA racking', 'Make efficient use of vertical storage and narrow-aisle space.'],
       ['Live WMS inventory control', 'Keep stock movements and inventory status synchronized.'],
       ['Ergonomic human-machine workflows', 'Support safe, efficient work across people and equipment.'],
+      ['Peak-ready capacity planning', 'Adjust labor, space and equipment around forecast demand and seasonal volume.'],
     ],
     warehouse: true,
   },
@@ -59,6 +61,7 @@ const pages = {
       ['Driver fatigue management', 'Support safe operating practices across long-haul routes.'],
       ['Geofenced departure/arrival alerts', 'Receive route milestone notifications at lane checkpoints.'],
       ['Full transit insurance', 'Add transit insurance cover for freight movement.'],
+      ['Pre-departure load checks', 'Align vehicle, shipment profile and loading requirements before the journey begins.'],
     ],
   },
   'first-mile': {
@@ -78,6 +81,7 @@ const pages = {
       ['GS1 barcode validation', 'Validate shipment labels and barcode information at origin.'],
       ['Supplier milk-run optimization', 'Combine nearby supplier pickups into efficient collection routes.'],
       ['Origin exception management', 'Identify and resolve pickup and dock issues early.'],
+      ['Pickup milestone updates', 'Share collection status and origin exceptions with downstream operations.'],
     ],
   },
   'middle-mile': {
@@ -97,6 +101,7 @@ const pages = {
       ['Dynamic FTL/LTL fleet mixing', 'Match full and less-than-truckload capacity to shipment demand.'],
       ['Real-time control tower tracking', 'Monitor linehaul milestones and exceptions in transit.'],
       ['Automated sorting lines', 'Support consistent, high-throughput transfer operations.'],
+      ['Planned departure windows', 'Align linehaul schedules and hub cut-offs to maintain a predictable transfer cadence.'],
     ],
   },
   'last-mile': {
@@ -116,6 +121,7 @@ const pages = {
       ['2-way SMS customer messaging', 'Send and receive delivery updates with customers.'],
       ['Locker & PUDO pickup integration', 'Support parcel pickup through lockers and pickup/drop-off points.'],
       ['Professional rider training', 'Prepare riders for safe and consistent delivery service.'],
+      ['Electronic proof of delivery', 'Record delivery confirmation to support clear, traceable customer handoffs.'],
     ],
   },
   'quick-commerce': {
@@ -135,6 +141,7 @@ const pages = {
       ['Batch picking algorithms', 'Group suitable orders to speed up item collection.'],
       ['Live stock feeds to prevent cancellations', 'Keep available stock synchronized with incoming orders.'],
       ['Dedicated EV rider fleet', 'Support local deliveries with a dedicated electric-vehicle rider fleet.'],
+      ['Demand-led replenishment', 'Use local order patterns to help prioritize stock availability at nearby micro-hubs.'],
     ],
     video: true,
   },
@@ -155,6 +162,7 @@ const pages = {
       ['Fast-moving SKU curation', 'Prioritize products with frequent local demand.'],
       ['Low-overhead infrastructure', 'Build compact operations around the required inventory flow.'],
       ['Instant API store integration', 'Connect order systems with store inventory and fulfillment.'],
+      ['Dispatch-ready order staging', 'Organize packed orders by handoff window to support a smooth rider pickup.'],
     ],
   },
   'delivery-solutions': {
@@ -174,6 +182,7 @@ const pages = {
       ['Specialized vehicle options', 'Choose EV, temperature-controlled, or flatbed vehicles.'],
       ['Proactive exception desk', 'Monitor delivery exceptions and coordinate resolution.'],
       ['Branded driver & tracking experience', 'Provide a consistent branded delivery and tracking experience.'],
+      ['Flexible multi-stop routing', 'Coordinate delivery sequences around locations, shipment priorities and operating windows.'],
     ],
   },
   'ecom-solution': {
@@ -193,6 +202,7 @@ const pages = {
       ['Automated NDR buyer verification', 'Verify buyer details when a delivery attempt needs follow-up.'],
       ['Frictionless reverse pickups', 'Coordinate returns collection from customers.'],
       ['Custom branded unboxing experience', 'Support a consistent branded presentation for delivered orders.'],
+      ['Order and returns visibility', 'Keep fulfillment, carrier and returns milestones clear across the order journey.'],
     ],
   },
   'cold-chain-logistics': {
@@ -212,6 +222,7 @@ const pages = {
       ['Reefer and insulated transport planning', 'Coordinate refrigerated vehicles for suitable routes.'],
       ['Temperature-aware handling windows', 'Align loading, staging and transfer timing with product needs.'],
       ['Shipment milestone visibility', 'Keep teams informed as sensitive consignments move through the network.'],
+      ['Product-specific handling plans', 'Document temperature ranges, staging windows and handoff checks for each shipment.'],
     ],
   },
 } as const;

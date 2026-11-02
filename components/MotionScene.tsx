@@ -111,7 +111,7 @@ export default function MotionScene({ mode = 'hero', clipSrc, clipStartSeconds =
           muted
           loop={clipEndSeconds === undefined}
           playsInline
-          preload={isPriority ? 'auto' : 'metadata'}
+          preload="metadata"
           onLoadedMetadata={(event) => {
             const video = event.currentTarget;
             const end = clipEndSeconds === undefined ? video.duration : Math.min(clipEndSeconds, video.duration);

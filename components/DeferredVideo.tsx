@@ -11,7 +11,7 @@ export default function DeferredVideo({
   poster?: string;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
-  const [nearViewport, setNearViewport] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -19,14 +19,19 @@ export default function DeferredVideo({
     if (!video) return;
 
     if (!('IntersectionObserver' in window)) {
-      setNearViewport(true);
+      setShouldLoad(true);
       setVisible(true);
       return;
     }
 
     const preloadObserver = new IntersectionObserver(
-      ([entry]) => setNearViewport(entry.isIntersecting),
-      { rootMargin: '560px 0px' },
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          preloadObserver.disconnect();
+        }
+      },
+      { rootMargin: '1400px 0px' },
     );
     const playbackObserver = new IntersectionObserver(
       ([entry]) => setVisible(entry.isIntersecting),
@@ -43,23 +48,28 @@ export default function DeferredVideo({
 
   useEffect(() => {
     const video = ref.current;
-    if (!video) return;
+    if (!video || !shouldLoad) return;
 
-    if (visible) void playBackgroundVideo(video).catch(() => {});
+    if (visible) {
+      void playBackgroundVideo(video).catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === 'AbortError') return;
+        console.error(`Unable to play portfolio video: ${src}`, error);
+      });
+    }
     else pauseBackgroundVideo(video);
 
     return () => pauseBackgroundVideo(video);
-  }, [nearViewport, visible, src]);
+  }, [shouldLoad, visible, src]);
 
   return (
     <video
       ref={ref}
-      src={nearViewport ? src : undefined}
+      src={shouldLoad ? src : undefined}
       poster={poster}
       muted
       loop
       playsInline
-      preload={nearViewport ? 'metadata' : 'none'}
+      preload={shouldLoad ? 'auto' : 'none'}
     />
   );
 }

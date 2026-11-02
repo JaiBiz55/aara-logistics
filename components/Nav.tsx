@@ -18,9 +18,10 @@ const services = [
 ];
 
 const links = [
-  ['Home', '/#top'],
-  ['Warehouse', '/services/warehouse-equipment-rental'],
-  ['Coverage', '/#coverage'],
+  ['About', '/#about'],
+  ['Why us', '/#why-us'],
+  ['Portfolio', '/#portfolio'],
+  ['FAQ', '/#faq'],
   ['Contact', '/#contact'],
 ];
 
